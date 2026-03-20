@@ -8,61 +8,92 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-
 body{
   margin:0;
   font-family:'Inter',sans-serif;
-  overflow-x:hidden;
-  background:#05070d;
+  background:#07090f;
   color:#fff;
+  overflow-x:hidden;
 }
 
+/* ===== 顶部导航（行业级）===== */
 header{
   position:fixed;
   top:0;
   width:100%;
-  z-index:10;
-  padding:20px 40px;
+  padding:20px 60px;
   display:flex;
   justify-content:space-between;
+  align-items:center;
+  z-index:100;
   background:linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
 }
 
-header h1{
-  margin:0;
-  font-size:20px;
+.logo{
+  font-weight:600;
 }
 
-header p{
-  margin:0;
+nav a{
+  margin-left:30px;
+  text-decoration:none;
   color:#aaa;
-  font-size:12px;
+  transition:0.3s;
+  position:relative;
 }
 
-.horizontal{
+nav a:hover{
+  color:#fff;
+}
+
+nav a::after{
+  content:"";
+  position:absolute;
+  bottom:-5px;
+  left:0;
+  width:0;
+  height:1px;
+  background:#fff;
+  transition:0.3s;
+}
+
+nav a:hover::after{
+  width:100%;
+}
+
+/* ===== 横向结构优化（不违和滚动）===== */
+.wrapper{
   display:flex;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
   height:100vh;
-  width:500vw;
 }
 
 .panel{
-  width:100vw;
+  flex:0 0 100vw;
   height:100vh;
+  position:relative;
+  scroll-snap-align:start;
   display:flex;
   align-items:center;
   justify-content:center;
-  position:relative;
-  overflow:hidden;
 }
 
+/* ===== 图形层（更像游戏UI）===== */
 .panel::before{
   content:"";
   position:absolute;
   inset:0;
   background-size:cover;
   background-position:center;
-  transition:0.6s;
   filter:brightness(0.6);
+  transition:0.6s;
+}
+
+.panel::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.8));
 }
 
 .panel:hover::before{
@@ -70,27 +101,27 @@ header p{
   filter:brightness(0.4);
 }
 
-.panel h2{
+.content{
   position:relative;
-  font-size:48px;
-  letter-spacing:3px;
+  text-align:center;
   z-index:2;
 }
 
-/* 每个项目的渐变 + 图片 */
+h2{
+  font-size:60px;
+  letter-spacing:4px;
+  margin-bottom:20px;
+}
 
-.p1::before{background-image:linear-gradient(45deg,#ff3c3c88,#000),url('https://picsum.photos/1600/900?1');}
-.p2::before{background-image:linear-gradient(45deg,#3c6bff88,#000),url('https://picsum.photos/1600/900?2');}
-.p3::before{background-image:linear-gradient(45deg,#ffc83c88,#000),url('https://picsum.photos/1600/900?3');}
-.p4::before{background-image:linear-gradient(45deg,#3cffc388,#000),url('https://picsum.photos/1600/900?4');}
-.p5::before{background-image:linear-gradient(45deg,#ffffff55,#000),url('https://picsum.photos/1600/900?5');}
+.sub{
+  color:#ccc;
+  margin-bottom:30px;
+}
 
-/* 点击按钮 */
 .enter{
-  position:absolute;
-  bottom:80px;
-  padding:10px 20px;
   border:1px solid #fff;
+  padding:10px 30px;
+  display:inline-block;
   cursor:pointer;
   transition:0.3s;
 }
@@ -100,17 +131,29 @@ header p{
   color:#000;
 }
 
-/* 滚动动画 */
+/* ===== 五个项目颜色 ===== */
+.p1::before{background-image:linear-gradient(45deg,#ff4d4d88,#000),url('https://picsum.photos/1600/900?1');}
+.p2::before{background-image:linear-gradient(45deg,#4d6bff88,#000),url('https://picsum.photos/1600/900?2');}
+.p3::before{background-image:linear-gradient(45deg,#ffd24d88,#000),url('https://picsum.photos/1600/900?3');}
+.p4::before{background-image:linear-gradient(45deg,#4dffd288,#000),url('https://picsum.photos/1600/900?4');}
+.p5::before{background-image:linear-gradient(45deg,#ffffff55,#000),url('https://picsum.photos/1600/900?5');}
 
-.wrapper{
-  height:500vh;
+/* ===== 页面层级分区 ===== */
+.section{
+  padding:120px 80px;
 }
 
-.sticky{
-  position:sticky;
-  top:0;
-  height:100vh;
-  overflow:hidden;
+.card{
+  max-width:900px;
+  margin:auto;
+  line-height:1.8;
+}
+
+footer{
+  text-align:center;
+  padding:60px;
+  color:#777;
+  border-top:1px solid #222;
 }
 
 </style>
@@ -118,63 +161,88 @@ header p{
 <body>
 
 <header>
-  <div>
-    <h1>Wenjin</h1>
-    <p>Concept Design Portfolio</p>
-  </div>
+  <div class="logo">Wenjin</div>
+  <nav>
+    <a href="#projects">Projects</a>
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+  </nav>
 </header>
 
-<div class="wrapper">
-  <div class="sticky">
-    <div class="horizontal" id="scroll">
+<!-- ===== 横向项目（核心）===== -->
+<div class="wrapper" id="projects">
 
-      <div class="panel p1">
-        <h2>PROJECT 01</h2>
-        <div class="enter" onclick="go('project1.html')">ENTER</div>
-      </div>
-
-      <div class="panel p2">
-        <h2>PROJECT 02</h2>
-        <div class="enter" onclick="go('project2.html')">ENTER</div>
-      </div>
-
-      <div class="panel p3">
-        <h2>PROJECT 03</h2>
-        <div class="enter" onclick="go('project3.html')">ENTER</div>
-      </div>
-
-      <div class="panel p4">
-        <h2>PROJECT 04</h2>
-        <div class="enter" onclick="go('project4.html')">ENTER</div>
-      </div>
-
-      <div class="panel p5">
-        <h2>PROJECT 05</h2>
-        <div class="enter" onclick="go('project5.html')">ENTER</div>
-      </div>
-
+  <div class="panel p1">
+    <div class="content">
+      <h2>PROJECT 01</h2>
+      <div class="sub">World Building / Environment</div>
+      <div class="enter" onclick="go('project1.html')">ENTER</div>
     </div>
   </div>
+
+  <div class="panel p2">
+    <div class="content">
+      <h2>PROJECT 02</h2>
+      <div class="sub">Industrial System</div>
+      <div class="enter" onclick="go('project2.html')">ENTER</div>
+    </div>
+  </div>
+
+  <div class="panel p3">
+    <div class="content">
+      <h2>PROJECT 03</h2>
+      <div class="sub">Narrative Scene</div>
+      <div class="enter" onclick="go('project3.html')">ENTER</div>
+    </div>
+  </div>
+
+  <div class="panel p4">
+    <div class="content">
+      <h2>PROJECT 04</h2>
+      <div class="sub">Structure Design</div>
+      <div class="enter" onclick="go('project4.html')">ENTER</div>
+    </div>
+  </div>
+
+  <div class="panel p5">
+    <div class="content">
+      <h2>PROJECT 05</h2>
+      <div class="sub">Exploration Concept</div>
+      <div class="enter" onclick="go('project5.html')">ENTER</div>
+    </div>
+  </div>
+
 </div>
 
-<footer style="text-align:center;padding:40px;color:#888;">
+<!-- ===== About ===== -->
+<section class="section" id="about">
+  <div class="card">
+    <h2>About</h2>
+    <p>
+      Concept Designer focusing on cinematic environments, industrial systems, and narrative-driven visual storytelling.
+    </p>
+  </div>
+</section>
+
+<!-- ===== Experience ===== -->
+<section class="section" id="experience">
+  <div class="card">
+    <h2>Experience</h2>
+    <p>
+      Project-based concept design work including environment design, industrial structure exploration, and narrative composition.
+    </p>
+  </div>
+</section>
+
+<footer>
   <p>Email: 3536290949@qq.com</p>
   <p>Tel: 17508904590</p>
 </footer>
 
 <script>
-
-const scroll = document.getElementById('scroll');
-
-window.addEventListener('scroll',()=>{
-  const scrollTop = window.scrollY;
-  scroll.style.transform = `translateX(-${scrollTop}px)`;
-});
-
 function go(url){
   window.location.href = url;
 }
-
 </script>
 
 </body>
