@@ -1,108 +1,181 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wenjin - Concept Design Portfolio</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Wenjin - Concept Design Portfolio</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: #0d0f14;
-      color: #fff;
-    }
+<style>
 
-    header {
-      padding: 80px 20px 40px;
-      text-align: center;
-    }
+body{
+  margin:0;
+  font-family:'Inter',sans-serif;
+  overflow-x:hidden;
+  background:#05070d;
+  color:#fff;
+}
 
-    h1 { font-size: 3em; margin: 0; }
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index:10;
+  padding:20px 40px;
+  display:flex;
+  justify-content:space-between;
+  background:linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+}
 
-    header p { color: #aaa; margin-top: 10px; }
+header h1{
+  margin:0;
+  font-size:20px;
+}
 
-    .grid {
-      column-count: 3;
-      column-gap: 20px;
-      padding: 20px;
-    }
+header p{
+  margin:0;
+  color:#aaa;
+  font-size:12px;
+}
 
-    @media(max-width: 900px){ .grid{ column-count:2;} }
-    @media(max-width: 600px){ .grid{ column-count:1;} }
+.horizontal{
+  display:flex;
+  height:100vh;
+  width:500vw;
+}
 
-    .item {
-      break-inside: avoid;
-      margin-bottom: 20px;
-      position: relative;
-    }
+.panel{
+  width:100vw;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+}
 
-    .item img {
-      width: 100%;
-      border-radius: 12px;
-      transition: 0.4s;
-    }
+.panel::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-size:cover;
+  background-position:center;
+  transition:0.6s;
+  filter:brightness(0.6);
+}
 
-    .item:hover img {
-      transform: scale(1.05);
-      filter: brightness(0.6);
-    }
+.panel:hover::before{
+  transform:scale(1.05);
+  filter:brightness(0.4);
+}
 
-    .overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 20px;
-      opacity: 0;
-      transition: 0.4s;
-    }
+.panel h2{
+  position:relative;
+  font-size:48px;
+  letter-spacing:3px;
+  z-index:2;
+}
 
-    .item:hover .overlay { opacity: 1; }
+/* 每个项目的渐变 + 图片 */
 
-    .overlay h3 { margin: 0; }
+.p1::before{background-image:linear-gradient(45deg,#ff3c3c88,#000),url('https://picsum.photos/1600/900?1');}
+.p2::before{background-image:linear-gradient(45deg,#3c6bff88,#000),url('https://picsum.photos/1600/900?2');}
+.p3::before{background-image:linear-gradient(45deg,#ffc83c88,#000),url('https://picsum.photos/1600/900?3');}
+.p4::before{background-image:linear-gradient(45deg,#3cffc388,#000),url('https://picsum.photos/1600/900?4');}
+.p5::before{background-image:linear-gradient(45deg,#ffffff55,#000),url('https://picsum.photos/1600/900?5');}
 
-    footer {
-      text-align: center;
-      padding: 60px 20px;
-      color: #aaa;
-      border-top: 1px solid #222;
-    }
+/* 点击按钮 */
+.enter{
+  position:absolute;
+  bottom:80px;
+  padding:10px 20px;
+  border:1px solid #fff;
+  cursor:pointer;
+  transition:0.3s;
+}
 
-  </style>
+.enter:hover{
+  background:#fff;
+  color:#000;
+}
+
+/* 滚动动画 */
+
+.wrapper{
+  height:500vh;
+}
+
+.sticky{
+  position:sticky;
+  top:0;
+  height:100vh;
+  overflow:hidden;
+}
+
+</style>
 </head>
 <body>
 
 <header>
-  <h1>Wenjin</h1>
-  <p>Concept Design Portfolio</p>
+  <div>
+    <h1>Wenjin</h1>
+    <p>Concept Design Portfolio</p>
+  </div>
 </header>
 
-<section class="grid">
+<div class="wrapper">
+  <div class="sticky">
+    <div class="horizontal" id="scroll">
 
-  <a href="project1.html" class="item">
-    <img src="https://picsum.photos/600/800?1">
-    <div class="overlay"><h3>Project 01</h3></div>
-  </a>
+      <div class="panel p1">
+        <h2>PROJECT 01</h2>
+        <div class="enter" onclick="go('project1.html')">ENTER</div>
+      </div>
 
-  <a href="project2.html" class="item">
-    <img src="https://picsum.photos/600/700?2">
-    <div class="overlay"><h3>Project 02</h3></div>
-  </a>
+      <div class="panel p2">
+        <h2>PROJECT 02</h2>
+        <div class="enter" onclick="go('project2.html')">ENTER</div>
+      </div>
 
-  <a href="project3.html" class="item">
-    <img src="https://picsum.photos/600/900?3">
-    <div class="overlay"><h3>Project 03</h3></div>
-  </a>
+      <div class="panel p3">
+        <h2>PROJECT 03</h2>
+        <div class="enter" onclick="go('project3.html')">ENTER</div>
+      </div>
 
-</section>
+      <div class="panel p4">
+        <h2>PROJECT 04</h2>
+        <div class="enter" onclick="go('project4.html')">ENTER</div>
+      </div>
 
-<footer>
+      <div class="panel p5">
+        <h2>PROJECT 05</h2>
+        <div class="enter" onclick="go('project5.html')">ENTER</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer style="text-align:center;padding:40px;color:#888;">
   <p>Email: 3536290949@qq.com</p>
   <p>Tel: 17508904590</p>
 </footer>
+
+<script>
+
+const scroll = document.getElementById('scroll');
+
+window.addEventListener('scroll',()=>{
+  const scrollTop = window.scrollY;
+  scroll.style.transform = `translateX(-${scrollTop}px)`;
+});
+
+function go(url){
+  window.location.href = url;
+}
+
+</script>
 
 </body>
 </html>
