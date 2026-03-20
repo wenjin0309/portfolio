@@ -4,246 +4,645 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Wenjin - Concept Design Portfolio</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
 body{
   margin:0;
   font-family:'Inter',sans-serif;
-  background:#07090f;
   color:#fff;
-  overflow-x:hidden;
+  background:
+    linear-gradient(180deg,#05070c 0%,#05070c 24%,#111827 55%,#1b2f4d 78%,#334b73 100%);
+  min-height:100vh;
 }
 
-/* ===== 顶部导航（行业级）===== */
+a{color:inherit;text-decoration:none;}
+
+.header-shell{
+  padding:28px 28px 0;
+}
+
 header{
-  position:fixed;
-  top:0;
-  width:100%;
-  padding:20px 60px;
+  position:sticky;
+  top:16px;
+  z-index:20;
+  max-width:1400px;
+  margin:0 auto;
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  z-index:100;
-  background:linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+  justify-content:space-between;
+  padding:18px 24px;
+  background:rgba(7,10,17,0.72);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:20px;
+  backdrop-filter:blur(18px);
+  box-shadow:0 20px 60px rgba(0,0,0,0.28);
 }
 
-.logo{
+.brand{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.brand h1{
+  margin:0;
+  font-size:18px;
   font-weight:600;
+  letter-spacing:0.08em;
+}
+
+.brand p{
+  margin:0;
+  font-size:12px;
+  color:rgba(255,255,255,0.62);
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+}
+
+nav{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
 }
 
 nav a{
-  margin-left:30px;
-  text-decoration:none;
-  color:#aaa;
-  transition:0.3s;
-  position:relative;
+  padding:10px 14px;
+  border-radius:999px;
+  font-size:13px;
+  color:rgba(255,255,255,0.72);
+  background:rgba(255,255,255,0.03);
+  border:1px solid transparent;
+  transition:all .28s ease;
 }
 
 nav a:hover{
   color:#fff;
+  border-color:rgba(255,255,255,0.16);
+  background:rgba(255,255,255,0.08);
+  transform:translateY(-1px);
 }
 
-nav a::after{
-  content:"";
-  position:absolute;
-  bottom:-5px;
-  left:0;
-  width:0;
-  height:1px;
-  background:#fff;
-  transition:0.3s;
+.page{
+  max-width:1400px;
+  margin:0 auto;
+  padding:38px 28px 60px;
 }
 
-nav a:hover::after{
-  width:100%;
+.hero{
+  padding:28px 8px 42px;
+  display:grid;
+  grid-template-columns:1.1fr 0.9fr;
+  gap:24px;
+  align-items:end;
 }
 
-/* ===== 横向结构优化（不违和滚动）===== */
-.wrapper{
-  display:flex;
-  overflow-x:auto;
-  scroll-snap-type:x mandatory;
-  height:100vh;
+.hero-copy{
+  max-width:720px;
 }
 
-.panel{
-  flex:0 0 100vw;
-  height:100vh;
-  position:relative;
-  scroll-snap-align:start;
-  display:flex;
+.kicker{
+  display:inline-flex;
   align-items:center;
-  justify-content:center;
+  gap:10px;
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,0.12);
+  background:rgba(255,255,255,0.04);
+  color:rgba(255,255,255,0.8);
+  font-size:12px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
 }
 
-/* ===== 图形层（更像游戏UI）===== */
-.panel::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background-size:cover;
-  background-position:center;
-  filter:brightness(0.6);
-  transition:0.6s;
+.hero h2{
+  margin:18px 0 12px;
+  font-size:clamp(38px,6vw,86px);
+  line-height:0.96;
+  letter-spacing:-0.04em;
 }
 
-.panel::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.8));
-}
-
-.panel:hover::before{
-  transform:scale(1.05);
-  filter:brightness(0.4);
-}
-
-.content{
-  position:relative;
-  text-align:center;
-  z-index:2;
-}
-
-h2{
-  font-size:60px;
-  letter-spacing:4px;
-  margin-bottom:20px;
-}
-
-.sub{
-  color:#ccc;
-  margin-bottom:30px;
-}
-
-.enter{
-  border:1px solid #fff;
-  padding:10px 30px;
-  display:inline-block;
-  cursor:pointer;
-  transition:0.3s;
-}
-
-.enter:hover{
-  background:#fff;
-  color:#000;
-}
-
-/* ===== 五个项目颜色 ===== */
-.p1::before{background-image:linear-gradient(45deg,#ff4d4d88,#000),url('https://picsum.photos/1600/900?1');}
-.p2::before{background-image:linear-gradient(45deg,#4d6bff88,#000),url('https://picsum.photos/1600/900?2');}
-.p3::before{background-image:linear-gradient(45deg,#ffd24d88,#000),url('https://picsum.photos/1600/900?3');}
-.p4::before{background-image:linear-gradient(45deg,#4dffd288,#000),url('https://picsum.photos/1600/900?4');}
-.p5::before{background-image:linear-gradient(45deg,#ffffff55,#000),url('https://picsum.photos/1600/900?5');}
-
-/* ===== 页面层级分区 ===== */
-.section{
-  padding:120px 80px;
-}
-
-.card{
-  max-width:900px;
-  margin:auto;
+.hero p{
+  margin:0;
+  max-width:640px;
+  color:rgba(255,255,255,0.72);
+  font-size:15px;
   line-height:1.8;
 }
 
-footer{
-  text-align:center;
-  padding:60px;
-  color:#777;
-  border-top:1px solid #222;
+.hero-panel{
+  justify-self:end;
+  width:100%;
+  max-width:420px;
+  min-height:220px;
+  padding:18px;
+  border-radius:28px;
+  border:1px solid rgba(255,255,255,0.1);
+  background:linear-gradient(180deg,rgba(255,255,255,0.10),rgba(255,255,255,0.03));
+  box-shadow:0 22px 60px rgba(0,0,0,0.26);
+  position:relative;
+  overflow:hidden;
 }
 
+.hero-panel::before,
+.hero-panel::after{
+  content:"";
+  position:absolute;
+  border-radius:999px;
+  filter:blur(10px);
+}
+
+.hero-panel::before{
+  width:180px;height:180px;
+  right:-40px;top:-30px;
+  background:radial-gradient(circle,#7aa6ff 0%,rgba(122,166,255,0) 72%);
+}
+
+.hero-panel::after{
+  width:170px;height:170px;
+  left:-30px;bottom:-50px;
+  background:radial-gradient(circle,#ff7a9b 0%,rgba(255,122,155,0) 72%);
+}
+
+.panel-grid{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.panel-chip{
+  min-height:84px;
+  border-radius:18px;
+  padding:14px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+.panel-chip span{
+  display:block;
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:0.12em;
+  color:rgba(255,255,255,0.58);
+}
+
+.panel-chip strong{
+  display:block;
+  margin-top:10px;
+  font-size:15px;
+  line-height:1.35;
+}
+
+.section-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  margin:10px 8px 18px;
+}
+
+.section-title h3{
+  margin:0;
+  font-size:18px;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+}
+
+.section-title p{
+  margin:0;
+  color:rgba(255,255,255,0.62);
+  font-size:13px;
+}
+
+.showcase-wrap{
+  display:grid;
+  gap:22px;
+}
+
+.showcase-row{
+  padding:14px;
+  border-radius:30px;
+  background:rgba(255,255,255,0.045);
+  border:1px solid rgba(255,255,255,0.08);
+  box-shadow:0 16px 48px rgba(0,0,0,0.18);
+}
+
+.horizontal-row{
+  display:grid;
+  grid-template-columns:repeat(5, minmax(220px, 1fr));
+  gap:14px;
+}
+
+.vertical-row{
+  display:grid;
+  grid-template-columns:repeat(5, minmax(220px, 1fr));
+  gap:14px;
+}
+
+.card{
+  position:relative;
+  overflow:hidden;
+  border-radius:24px;
+  min-height:430px;
+  background:#0d1320;
+  border:1px solid rgba(255,255,255,0.08);
+  isolation:isolate;
+  transform:translateY(0);
+  transition:transform .45s ease,border-color .35s ease,box-shadow .35s ease;
+}
+
+.card.landscape{min-height:310px;}
+.card.portrait{min-height:500px;}
+
+.card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:var(--bg);
+  background-size:cover;
+  background-position:center;
+  transform:scale(1.02);
+  transition:transform .7s ease, filter .45s ease;
+  filter:saturate(1.02) contrast(1.04) brightness(.88);
+}
+
+.card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(180deg,rgba(0,0,0,0.06) 0%,rgba(0,0,0,0.16) 36%,rgba(0,0,0,0.84) 100%),
+    radial-gradient(circle at top right, rgba(255,255,255,0.22), transparent 30%),
+    linear-gradient(135deg,var(--accent1),transparent 46%,transparent 62%,var(--accent2));
+  opacity:0.98;
+}
+
+.card:hover{
+  transform:translateY(-8px);
+  border-color:rgba(255,255,255,0.2);
+  box-shadow:0 22px 70px rgba(0,0,0,0.32);
+}
+
+.card:hover::before{
+  transform:scale(1.08);
+  filter:saturate(1.18) contrast(1.08) brightness(.72);
+}
+
+.card .frame{
+  position:absolute;
+  inset:12px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,0.12);
+  z-index:1;
+  pointer-events:none;
+}
+
+.card-content{
+  position:absolute;
+  inset:auto 0 0 0;
+  z-index:2;
+  padding:22px;
+}
+
+.card-topline{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:10px;
+}
+
+.card-index,
+.card-type{
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:0.14em;
+  color:rgba(255,255,255,0.72);
+}
+
+.card h4{
+  margin:0 0 8px;
+  font-size:24px;
+  line-height:1.02;
+  letter-spacing:-0.03em;
+}
+
+.card p{
+  margin:0;
+  font-size:13px;
+  line-height:1.65;
+  color:rgba(255,255,255,0.76);
+  max-width:92%;
+}
+
+.card-arrow{
+  margin-top:16px;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:0.14em;
+  color:#fff;
+}
+
+.card-arrow::after{
+  content:"→";
+  font-size:16px;
+  transition:transform .3s ease;
+}
+
+.card:hover .card-arrow::after{
+  transform:translateX(5px);
+}
+
+.info-grid{
+  margin-top:30px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:22px;
+}
+
+.info-box{
+  padding:24px;
+  border-radius:28px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+  box-shadow:0 16px 48px rgba(0,0,0,0.16);
+}
+
+.info-box h3{
+  margin:0 0 14px;
+  font-size:18px;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+}
+
+.info-box p,
+.info-box li{
+  color:rgba(255,255,255,0.72);
+  line-height:1.8;
+  font-size:14px;
+}
+
+.info-box ul{
+  margin:0;
+  padding-left:18px;
+}
+
+.contact{
+  margin-top:30px;
+  padding:24px;
+  border-radius:28px;
+  background:linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03));
+  border:1px solid rgba(255,255,255,0.1);
+}
+
+.contact h3{
+  margin:0 0 14px;
+  font-size:18px;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+}
+
+.contact p{
+  margin:8px 0;
+  color:rgba(255,255,255,0.76);
+}
+
+.fade-up{
+  opacity:0;
+  transform:translateY(30px);
+  transition:opacity .8s ease, transform .8s ease;
+}
+
+.fade-up.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+@media (max-width:1180px){
+  .hero{grid-template-columns:1fr;}
+  .hero-panel{justify-self:start;max-width:100%;}
+  .horizontal-row,
+  .vertical-row{grid-template-columns:repeat(2, minmax(240px,1fr));}
+}
+
+@media (max-width:780px){
+  .header-shell{padding:16px 16px 0;}
+  header{top:10px;padding:16px 16px;align-items:flex-start;gap:14px;flex-direction:column;}
+  .page{padding:22px 16px 40px;}
+  .hero{padding-top:20px;}
+  .hero h2{line-height:1.02;}
+  .horizontal-row,
+  .vertical-row,
+  .info-grid{grid-template-columns:1fr;}
+  .card.landscape,
+  .card.portrait,
+  .card{min-height:360px;}
+}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="logo">Wenjin</div>
-  <nav>
-    <a href="#projects">Projects</a>
-    <a href="#about">About</a>
-    <a href="#experience">Experience</a>
-  </nav>
-</header>
-
-<!-- ===== 横向项目（核心）===== -->
-<div class="wrapper" id="projects">
-
-  <div class="panel p1">
-    <div class="content">
-      <h2>PROJECT 01</h2>
-      <div class="sub">World Building / Environment</div>
-      <div class="enter" onclick="go('project1.html')">ENTER</div>
+<div class="header-shell">
+  <header>
+    <div class="brand">
+      <h1>Wenjin</h1>
+      <p>Concept Design Portfolio</p>
     </div>
-  </div>
-
-  <div class="panel p2">
-    <div class="content">
-      <h2>PROJECT 02</h2>
-      <div class="sub">Industrial System</div>
-      <div class="enter" onclick="go('project2.html')">ENTER</div>
-    </div>
-  </div>
-
-  <div class="panel p3">
-    <div class="content">
-      <h2>PROJECT 03</h2>
-      <div class="sub">Narrative Scene</div>
-      <div class="enter" onclick="go('project3.html')">ENTER</div>
-    </div>
-  </div>
-
-  <div class="panel p4">
-    <div class="content">
-      <h2>PROJECT 04</h2>
-      <div class="sub">Structure Design</div>
-      <div class="enter" onclick="go('project4.html')">ENTER</div>
-    </div>
-  </div>
-
-  <div class="panel p5">
-    <div class="content">
-      <h2>PROJECT 05</h2>
-      <div class="sub">Exploration Concept</div>
-      <div class="enter" onclick="go('project5.html')">ENTER</div>
-    </div>
-  </div>
-
+    <nav>
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 </div>
 
-<!-- ===== About ===== -->
-<section class="section" id="about">
-  <div class="card">
-    <h2>About</h2>
-    <p>
-      Concept Designer focusing on cinematic environments, industrial systems, and narrative-driven visual storytelling.
-    </p>
-  </div>
-</section>
+<main class="page">
+  <section class="hero fade-up">
+    <div class="hero-copy">
+      <div class="kicker">Visual Narrative • Environment • Worldbuilding</div>
+      <h2>Image-first concept design portfolio with game selection energy.</h2>
+      <p>
+        A single-page portfolio focused on strong image presence, layered presentation, and a graphic selection-screen feeling. The layout keeps distance from the browser edge, uses a dark upper atmosphere with a richer gradient below, and presents projects like choosing a character or chapter in a game.
+      </p>
+    </div>
+    <div class="hero-panel fade-up">
+      <div class="panel-grid">
+        <div class="panel-chip">
+          <span>Format</span>
+          <strong>Single-page portfolio</strong>
+        </div>
+        <div class="panel-chip">
+          <span>Focus</span>
+          <strong>Image-led visual hierarchy</strong>
+        </div>
+        <div class="panel-chip">
+          <span>Layout</span>
+          <strong>Horizontal and vertical showcase bands</strong>
+        </div>
+        <div class="panel-chip">
+          <span>Target</span>
+          <strong>Ubisoft / EA inspired presentation tone</strong>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- ===== Experience ===== -->
-<section class="section" id="experience">
-  <div class="card">
-    <h2>Experience</h2>
-    <p>
-      Project-based concept design work including environment design, industrial structure exploration, and narrative composition.
-    </p>
-  </div>
-</section>
+  <section id="projects" class="fade-up">
+    <div class="section-title">
+      <h3>Selected Projects</h3>
+      <p>Presented as visual selection blocks in a single page.</p>
+    </div>
 
-<footer>
-  <p>Email: 3536290949@qq.com</p>
-  <p>Tel: 17508904590</p>
-</footer>
+    <div class="showcase-wrap">
+      <div class="showcase-row fade-up">
+        <div class="horizontal-row">
+          <a class="card landscape" href="#" style="--accent1:rgba(255,90,120,0.48);--accent2:rgba(67,18,36,0.45);--bg:url('https://picsum.photos/1200/800?11');">
+            <div class="frame"></div>
+            <div class="card-content">
+              <div class="card-topline"><span class="card-index">01</span><span class="card-type">Environment</span></div>
+              <h4>Crimson Frontier</h4>
+              <p>Wide cinematic atmosphere with a strong chapter-select feeling and bold color contrast.</p>
+              <span class="card-arrow">View Project</span>
+            </div>
+          </a>
+          <a class="card landscape" href="#" style="--accent1:rgba(99,153,255,0.45);--accent2:rgba(18,40,85,0.45);--bg:url('https://picsum.photos/1200/800?12');">
+            <div class="frame"></div>
+            <div class="card-content">
+              <div class="card-topline"><span class="card-index">02</span><span class="card-type">Structure</span></div>
+              <h4>Skyline Relay</h4>
+              <p>Graphic massing, layered silhouettes, and a more game-menu-driven presentation rhythm.</p>
+              <span class="card-arrow">View Project</span>
+            </div>
+          </a>
+          <a class="card landscape" href="#" style="--accent1:rgba(255,208,84,0.45);--accent2:rgba(90,58,12,0.45);--bg:url('https://picsum.photos/1200/800?13');">
+            <div class="frame"></div>
+            <div class="card-content">
+              <div class="card-topline"><span class="card-index">03</span><span class="card-type">Narrative</span></div>
+              <h4>Golden Echo</h4>
+              <p>Story-driven composition with stronger glow gradients and framed image dominance.</p>
+              <span class="card-arrow">View Project</span>
+            </div>
+          </a>
+          <a class="card landscape" href="#" style="--accent1:rgba(79,255,198,0.40);--accent2:rgba(10,67,56,0.45);--bg:url('https://picsum.photos/1200/800?14');">
+            <div class="frame"></div>
+            <div class="card-content">
+              <div class="card-topline"><span class="card-index">04</span><span class="card-type">Exploration</span></div>
+              <h4>Neon Canopy</h4>
+              <p>Richer tonal separation and more colorful visual grouping for exploration-focused work.</p>
+              <span class="card-arrow">View Project</span>
+            </div>
+          </a>
+          <a class="card landscape" href="#" style="--accent1:rgba(210,210,255,0.32);--accent2:rgba(52,58,88,0.42);--bg:url('https://picsum.photos/1200/800?15');">
+            <div class="frame"></div>
+            <div class="card-content">
+              <div class="card-topline"><span class="card-index">05</span><span class="card-type">Key Art</span></div>
+              <h4>White Signal</h4>
+              <p>Controlled contrast, premium framing, and selection-card readability for overseas studios.</p>
+              <span class="card-arrow">View Project</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="showcase-row fade-up">
+        <div class="section-title" style="margin:0 6px 16px;">
+          <h3>Character Select Feeling</h3>
+          <p>Portrait-oriented visual cards in one unified page.</p>
+        </div>
+        <div class="vertical-row">
+          <a class="card portrait" href="#" style="--accent1:rgba(255,100,126,0.50);--accent2:rgba(75,18,30,0.44);--bg:url('https://picsum.photos/900/1400?21');">
+            <div class="frame"></div>
+            <div class="card-content">
+              <div class="card-topline"><span class="card-index">A1</span><span class="card-type">Series</span></div>
+              <h4>Chapter One</h4>
+              <p>A vertical selection-card feeling, closer to picking a campaign or playable route.</p>
+              <span class="card-arrow">Open Series</span>
+            </div>
+          </a>
+          <a class="card portrait" href="#" style="--accent1:rgba(76,124,255,0.48);--accent2:rgba(16,28,82,0.46);--bg:url('https://picsum.photos/900/1400?22');">
+            <div class="frame"></div>
+            <div class="card-content">
+              <div class="card-topline"><span class="card-index">A2</span><span class="card-type">Series</span></div>
+              <h4>Chapter Two</h4>
+              <p>Designed to let the imagery lead first, with text used as a secondary support layer.</p>
+              <span class="card-arrow">Open Series</span>
+            </div>
+          </a>
+          <a class="card portrait" href="#" style="--accent1:rgba(255,205,95,0.52);--accent2:rgba(88,56,9,0.44);--bg:url('https://picsum.photos/900/1400?23');">
+            <div class="frame"></div>
+            <div class="card-content">
+              <div class="card-topline"><span class="card-index">A3</span><span class="card-type">Series</span></div>
+              <h4>Chapter Three</h4>
+              <p>More graphic, richer, and less minimal — closer to modern AAA portfolio packaging.</p>
+              <span class="card-arrow">Open Series</span>
+            </div>
+          </a>
+          <a class="card portrait" href="#" style="--accent1:rgba(88,255,193,0.45);--accent2:rgba(10,64,53,0.45);--bg:url('https://picsum.photos/900/1400?24');">
+            <div class="frame"></div>
+            <div class="card-content">
+              <div class="card-topline"><span class="card-index">A4</span><span class="card-type">Series</span></div>
+              <h4>Chapter Four</h4>
+              <p>Structured like a graphic game roster, with enough air around the panels to feel premium.</p>
+              <span class="card-arrow">Open Series</span>
+            </div>
+          </a>
+          <a class="card portrait" href="#" style="--accent1:rgba(235,235,255,0.30);--accent2:rgba(45,54,92,0.45);--bg:url('https://picsum.photos/900/1400?25');">
+            <div class="frame"></div>
+            <div class="card-content">
+              <div class="card-topline"><span class="card-index">A5</span><span class="card-type">Series</span></div>
+              <h4>Chapter Five</h4>
+              <p>Sharper framing and more layered overlays for a stronger international portfolio tone.</p>
+              <span class="card-arrow">Open Series</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="info-grid">
+    <section id="about" class="info-box fade-up">
+      <h3>About</h3>
+      <p>
+        Concept designer focused on image-led visual storytelling, cinematic environment design, and graphic portfolio presentation for game industry applications.
+      </p>
+    </section>
+
+    <section id="experience" class="info-box fade-up">
+      <h3>Experience</h3>
+      <ul>
+        <li>Environment and worldbuilding concepts</li>
+        <li>Narrative scene development</li>
+        <li>Industrial and structural design exploration</li>
+        <li>Series-based visual presentation and portfolio packaging</li>
+      </ul>
+    </section>
+  </div>
+
+  <section id="contact" class="contact fade-up">
+    <h3>Contact</h3>
+    <p>Email: 3536290949@qq.com</p>
+    <p>Tel: 17508904590</p>
+  </section>
+</main>
 
 <script>
-function go(url){
-  window.location.href = url;
-}
-</script>
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach((entry)=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+    }
+  });
+},{threshold:0.12});
 
+document.querySelectorAll('.fade-up').forEach((el)=>observer.observe(el));
+</script>
 </body>
 </html>
