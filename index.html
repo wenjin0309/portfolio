@@ -157,9 +157,21 @@ nav a:hover{color:#fff;border-color:var(--line);background:rgba(255,255,255,.05)
 .overlay-header-content p{margin:0;color:var(--muted);line-height:1.8}
 .overlay-close{position:absolute;top:18px;right:18px;z-index:2;width:44px;height:44px;border:1px solid var(--line);background:rgba(0,0,0,.5);color:#fff;cursor:pointer}
 .overlay-body{padding:28px;display:grid;gap:22px}
-.overlay-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
-.overlay-image{background:#111;min-height:420px;overflow:hidden;border:1px solid var(--line-soft)}
-.overlay-image img{width:100%;height:100%;object-fit:cover}
+.overlay-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:32px
+}
+.overlay-image{
+  background:#111;
+  overflow:hidden;
+  border:1px solid var(--line-soft)
+}
+.overlay-image img{
+  width:100%;
+  height:auto;
+  object-fit:contain;
+}
 .overlay-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .overlay-meta-box{padding:18px;background:#121722;border:1px solid var(--line-soft)}
 .overlay-meta-box span{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55)}
