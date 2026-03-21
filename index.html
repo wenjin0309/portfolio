@@ -124,7 +124,25 @@ nav a:hover{color:#fff;border-color:var(--line);background:rgba(255,255,255,.05)
 
 .cut-block{min-height:430px}
 .cut-grid{position:relative;z-index:2;min-height:430px;display:grid;grid-template-columns:360px 1fr;align-items:stretch}
-.cut-panel{position:relative;background:#efefef;color:#080808;padding:42px 34px;display:flex;flex-direction:column;justify-content:center;clip-path:polygon(0 0, 100% 0, 84% 100%, 0 100%);z-index:3}
+.cut-panel{
+  position:relative;
+  background:linear-gradient(
+    180deg,
+    rgba(255,255,255,.96) 0%,
+    rgba(255,255,255,.90) 38%,
+    rgba(235,235,235,.72) 68%,
+    rgba(14,16,22,.18) 88%,
+    rgba(13,16,22,0) 100%
+  );
+  color:#080808;
+  padding:42px 34px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  clip-path:polygon(0 0, 100% 0, 84% 100%, 0 100%);
+  z-index:3;
+  backdrop-filter:blur(2px);
+}
 .cut-label{display:inline-block;margin-bottom:18px;font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
 .cut-panel h3{margin:0 0 14px;font-size:clamp(28px,3.3vw,46px);line-height:.96;letter-spacing:-.05em;text-transform:uppercase}
 .cut-panel p{margin:0;color:rgba(8,8,8,.72);font-size:14px;line-height:1.8}
@@ -135,7 +153,25 @@ nav a:hover{color:#fff;border-color:var(--line);background:rgba(255,255,255,.05)
 .offset-image{position:relative;width:calc(100% - 140px);min-height:540px;margin-left:140px;overflow:hidden}
 .offset-image::before{content:"";position:absolute;inset:0;background-image:var(--bg);background-size:cover;background-position:center;filter:saturate(1.05) brightness(.92);transition:transform .8s ease, filter .45s ease}
 .offset-block:hover .offset-image::before{transform:scale(1.05);filter:saturate(1.12) brightness(.8)}
-.offset-card{position:absolute;left:0;bottom:48px;width:min(500px, 44vw);padding:36px 34px;background:rgba(234,234,234,.96);color:#070707;z-index:3;clip-path:polygon(0 0, 88% 0, 100% 22%, 100% 100%, 0 100%)}
+.offset-card{
+  position:absolute;
+  left:0;
+  bottom:48px;
+  width:min(500px, 44vw);
+  padding:36px 34px;
+  background:linear-gradient(
+    180deg,
+    rgba(245,245,245,.90) 0%,
+    rgba(247,247,247,.90) 34%,
+    rgba(226,226,226,.72) 68%,
+    rgba(15,17,23,.20) 88%,
+    rgba(13,16,22,0) 100%
+  );
+  color:#070707;
+  z-index:3;
+  clip-path:polygon(0 0, 88% 0, 100% 22%, 100% 100%, 0 100%);
+  backdrop-filter:blur(2px);
+}
 .offset-card h3{margin:0 0 12px;font-size:clamp(28px,3.2vw,46px);line-height:.96;letter-spacing:-.05em;text-transform:uppercase}
 .offset-card p{margin:0;color:rgba(7,7,7,.74);line-height:1.8;font-size:14px}.offset-card .feature-link{color:#0b0b0b}
 
