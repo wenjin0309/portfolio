@@ -465,11 +465,20 @@ nav a:hover{color:#fff;border-color:var(--line);background:rgba(255,255,255,.05)
   </main>
  <script>
 history.scrollRestoration = 'manual';
- 
 
-window.onload = () => {
+function forceScrollTop() {
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
   window.scrollTo(0, 0);
-};
+}
+
+window.addEventListener('DOMContentLoaded', forceScrollTop);
+window.addEventListener('load', forceScrollTop);
+window.addEventListener('pageshow', forceScrollTop);
+
+if (window.location.hash) {
+  history.replaceState(null, '', window.location.pathname);
+}
 const observer = new IntersectionObserver((entries)=>{
   entries.forEach((entry)=>{
     if(entry.isIntersecting){
@@ -636,6 +645,7 @@ function closeProject(){
   overlay.classList.remove('active');
   overlay.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
+  forceScrollTop();
 }
 
 document.querySelectorAll('[data-project]').forEach(btn => {
