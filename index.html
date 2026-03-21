@@ -15,7 +15,7 @@
   --line:rgba(255,255,255,.1);
   --line-soft:rgba(255,255,255,.06);
   --shadow:0 28px 90px rgba(0,0,0,.32);
-  --content-width:min(85vw, 1680px);
+--content-width:min(92vw, 1820px);
 }
 html{scroll-behavior:smooth}
 body{
@@ -148,7 +148,7 @@ nav a:hover{color:#fff;border-color:var(--line);background:rgba(255,255,255,.05)
 
 .overlay-panel{position:fixed;inset:0;z-index:80;display:none;align-items:flex-start;justify-content:center;background:rgba(0,0,0,.82);backdrop-filter:blur(8px);padding:40px 20px;overflow-y:auto}
 .overlay-panel.active{display:flex}
-.overlay-card{width:min(1200px, 100%);background:#0c0f15;border:1px solid var(--line);box-shadow:var(--shadow);position:relative}
+.overlay-card{width:min(86vw, 1680px);background:#0c0f15;border:1px solid var(--line);box-shadow:var(--shadow);position:relative}
 .overlay-header{min-height:260px;padding:40px;display:flex;align-items:flex-end;position:relative;overflow:hidden;border-bottom:1px solid var(--line-soft)}
 .overlay-header::before{content:"";position:absolute;inset:0;background-image:var(--overlay-bg);background-size:cover;background-position:center;filter:brightness(.45) saturate(1.05)}
 .overlay-header::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.78))}
@@ -157,8 +157,8 @@ nav a:hover{color:#fff;border-color:var(--line);background:rgba(255,255,255,.05)
 .overlay-header-content p{margin:0;color:var(--muted);line-height:1.8}
 .overlay-close{position:absolute;top:18px;right:18px;z-index:2;width:44px;height:44px;border:1px solid var(--line);background:rgba(0,0,0,.5);color:#fff;cursor:pointer}
 .overlay-body{padding:28px;display:grid;gap:22px}
-.overlay-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-.overlay-image{background:#111;min-height:320px;overflow:hidden;border:1px solid var(--line-soft)}
+.overlay-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.overlay-image{background:#111;min-height:420px;overflow:hidden;border:1px solid var(--line-soft)}
 .overlay-image img{width:100%;height:100%;object-fit:cover}
 .overlay-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .overlay-meta-box{padding:18px;background:#121722;border:1px solid var(--line-soft)}
