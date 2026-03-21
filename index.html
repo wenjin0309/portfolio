@@ -463,8 +463,13 @@ nav a:hover{color:#fff;border-color:var(--line);background:rgba(255,255,255,.05)
 
     <div class="footer">© Wenjin — Concept Design Portfolio</div>
   </main>
+ <script>
+history.scrollRestoration = 'manual';
+ 
 
-<script>
+window.onload = () => {
+  window.scrollTo(0, 0);
+};
 const observer = new IntersectionObserver((entries)=>{
   entries.forEach((entry)=>{
     if(entry.isIntersecting){
