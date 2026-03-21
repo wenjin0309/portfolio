@@ -118,10 +118,38 @@ nav a:hover{color:#fff;border-color:var(--line);background:rgba(255,255,255,.05)
 .feature-title{margin:0 0 14px;font-size:clamp(34px,4.4vw,66px);line-height:.94;letter-spacing:-.06em;text-transform:uppercase}
 .feature-desc{margin:0;max-width:560px;color:var(--muted);font-size:15px;line-height:1.9}
 .feature-link{
-  display:inline-flex;align-items:center;gap:10px;margin-top:22px;padding:12px 0;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;background:none;border:none;color:inherit;cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin-top:22px;
+  padding:12px 18px;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:#fff;
+  cursor:pointer;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  box-shadow:0 8px 24px rgba(0,0,0,.22);
+  transition:transform .28s ease, background .28s ease, border-color .28s ease, box-shadow .28s ease;
 }
-.feature-link::after{content:"→";font-size:16px;transition:transform .28s ease}.block:hover .feature-link::after{transform:translateX(5px)}
-
+.feature-link:hover{
+  transform:translateY(-2px);
+  background:rgba(255,255,255,.14);
+  border-color:rgba(255,255,255,.28);
+  box-shadow:0 12px 28px rgba(0,0,0,.28);
+}
+.feature-link::after{
+  content:"→";
+  font-size:16px;
+  transition:transform .28s ease;
+}
+.feature-link:hover::after{
+  transform:translateX(4px);
+}
 .cut-block{min-height:430px}
 .cut-grid{position:relative;z-index:2;min-height:430px;display:grid;grid-template-columns:360px 1fr;align-items:stretch}
 .cut-panel{
@@ -147,7 +175,32 @@ nav a:hover{color:#fff;border-color:var(--line);background:rgba(255,255,255,.05)
 .cut-label{display:inline-block;margin-bottom:18px;font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
 .cut-panel h3{margin:0 0 14px;font-size:clamp(28px,3.3vw,46px);line-height:.96;letter-spacing:-.05em;text-transform:uppercase}
 .cut-panel p{margin:0;color:rgba(8,8,8,.72);font-size:14px;line-height:1.8}
-.cut-cta{display:inline-flex;align-items:center;justify-content:center;margin-top:22px;width:150px;padding:12px 16px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:#0b0b0b;color:#fff;border:none;cursor:pointer}
+.cut-cta{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  margin-top:22px;
+  width:160px;
+  padding:12px 16px;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:#fff;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(15,17,23,.42);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  box-shadow:0 8px 24px rgba(0,0,0,.18);
+  cursor:pointer;
+  transition:transform .28s ease, background .28s ease, border-color .28s ease, box-shadow .28s ease;
+}
+.cut-cta:hover{
+  transform:translateY(-2px);
+  background:rgba(15,17,23,.58);
+  border-color:rgba(255,255,255,.28);
+  box-shadow:0 12px 28px rgba(0,0,0,.24);
+}
 .cut-right{position:relative;min-height:430px}.cut-right::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg, rgba(0,0,0,.42) 0%, rgba(0,0,0,.08) 34%, rgba(0,0,0,.18) 100%);z-index:1}
 
 .offset-block{min-height:540px;background:#000;padding:0 96px 0 0;position:relative}
@@ -174,7 +227,16 @@ nav a:hover{color:#fff;border-color:var(--line);background:rgba(255,255,255,.05)
   backdrop-filter:blur(2px);
 }
 .offset-card h3{margin:0 0 12px;font-size:clamp(28px,3.2vw,46px);line-height:.96;letter-spacing:-.05em;text-transform:uppercase}
-.offset-card p{margin:0;color:rgba(7,7,7,.74);line-height:1.8;font-size:14px}.offset-card .feature-link{color:#0b0b0b}
+.offset-card p{margin:0;color:rgba(7,7,7,.74);line-height:1.8;font-size:14px}..offset-card .feature-link{
+  color:#111;
+  background:rgba(255,255,255,.36);
+  border:1px solid rgba(0,0,0,.10);
+  box-shadow:0 10px 24px rgba(0,0,0,.10);
+}
+.offset-card .feature-link:hover{
+  background:rgba(255,255,255,.52);
+  border-color:rgba(0,0,0,.16);
+}
 
 .info-row{display:grid;grid-template-columns:1fr 1fr;gap:22px}
 .info-box{padding:34px;min-height:220px;background:#111214;border:1px solid var(--line-soft)}
