@@ -592,7 +592,9 @@ function openProject(key){
       <strong>${item[1]}</strong>
     </div>
   `).join('');
-  overlayGrid.innerHTML = data.images.map(src => `
+  overlayGrid.innerHTML = data.images
+  .filter(src => !src.includes('gunfight-07') && !src.includes('gunfight-08'))
+  .map(src => `
     <div class="overlay-image"><img src="${src}" alt="${data.title}"></div>
   `).join('');
   overlay.classList.add('active');
